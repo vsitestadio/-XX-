@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQFY78MP7L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BQFY78MP7L');
+</script>
+	<meta charset="utf-8">
+<meta name="google" content="notranslate">
+
+    <meta name="description" content="2026年2月6日、7日「2026 we are JIKEI COM 若きクリエーター展」にて出展～ 誘拐させた友達を助けに行くリアル脱出ゲーム">
+    <meta name="keywords" content="友達が××された日,友×,×日,友達がｘｘされた日,友ｘ,友ｘ日,友達,誘拐,リアル脱出,リアル脱出ゲーム,東京アニメ・声優＆eスポーツ専門学校,滋慶ゲームショウ">
+    <meta property="og:url" content="https://yukai.secret.jp/index/">
+    <meta property="og:type" content="website">
+    <title>友達がXXされた日|ミニゲーム</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+	
+    <link rel="stylesheet" href="../css/minigame.css" />
+    <link rel="stylesheet" href="../css/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+	
+<div class="nav">
+  <div class="nav-background">
+    <img src="../img/nav.png" alt=""/>
+  </div>
+
+  <button class="hamburger" id="hamburger">
+    <img src="../img/hamburger.png" alt="menu" id="hamburger-icon">
+  </button>
+
+  <ul class="nav-ul" id="navMenu">
+    <li class="nav-li"><a href="index.html">TOP</a></li>
+    <li class="nav-li"><a href="event.html">EVENT</a></li>
+    <li class="nav-li"><a href="minigame.html">MINI GAMES</a></li>
+    <li class="nav-li"><a href="character.html">CHARACTER</a></li>
+	<li class="nav-li"><a href="staff.html">STAFF&amp;CAST</a></li>
+    <li class="nav-li"><a href="news.html">NEWS</a></li>
+    <li class="nav-li"><a href="community.html">INQUIRY</a></li>
+  </ul>
+</div>
+	
+<div id="game-layout">
+	
+  <!-- CENTER: Elevator game -->
+  <div id="center-panel">
+    <div id="timer">⏱️ Time Left: 10s</div>
+
+    <div id="building">
+      <div id="floors"></div>
+      <div id="left-flame" class="side-flame"></div>
+      <div id="right-flame" class="side-flame"></div>
+      <div id="elevator">
+        <div id="spark-container"></div>
+        <div id="danger-label">⚠️ DANGER</div>
+      </div>
+      <div id="right-panel">
+        <button id="action-button"></button>
+        <button id="reset-button"></button>
+      </div>
+    </div>
+  </div>
+	
+  <div id="overlay-ui">
+    <h1>
+      <p class="title-main">Critical Stop</p>
+      <p class="title-sub">Elevator</p>
+    </h1>
+    <p class="game-text">Stop it right before it hits the ground!</p>
+
+    <div id="difficulty-wrapper">
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="Easy">Easy</option>
+        <option value="Normal" selected>Normal</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+
+    <pre id="result"></pre>
+  </div>
+	
+  <!-- RIGHT: Buttons -->
+  <div id="name-entry">
+    <input type="text" id="player-name" placeholder="Enter your name..." maxlength="10" />
+    <button id="submit-score">Submit Score</button>
+  </div>
+</div>
+
+
+<!-- Sound effects -->
+<audio id="tick-sound" src="tick.mp3" preload="auto"></audio>
+<audio id="crash-sound" src="crash.mp3" preload="auto"></audio>
+<audio id="alert-sound" src="alert.mp3" preload="auto"></audio>
+
+<!-- Crash flash -->
+<div id="crash-flash"></div>	
+
+<script src="../js/minigame.js"></script>
+</body>
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+const hamburgerIcon = document.getElementById('hamburger-icon');
+
+hamburger.addEventListener('click', () => {
+  if (navMenu.classList.contains('show')) {
+    // 閉じる処理
+    navMenu.classList.remove('visible');
+    setTimeout(() => {
+      navMenu.classList.remove('animate-bg');
+      setTimeout(() => {
+        navMenu.classList.remove('show');
+      }, 1000);
+    }, 300);
+    hamburgerIcon.src = '../img/hamburger.png';
+  } else {
+    // 開く処理
+    navMenu.classList.add('show');
+    setTimeout(() => navMenu.classList.add('animate-bg'), 50);
+    setTimeout(() => {
+      navMenu.classList.add('visible');
+      hamburgerIcon.src = '../img/close-hamburger.png';
+    }, 1800);
+  }
+});
+</script>
+<script>
+  const playImages = document.querySelectorAll('.play-ul img');
+
+const playObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('show');
+      }, index * 200);
+      playObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+playImages.forEach(img => playObserver.observe(img));
+</script>
+</html>

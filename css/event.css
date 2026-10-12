@@ -1,0 +1,345 @@
+@charset "utf-8";
+/* CSS Document */
+table, tr, th ,td{
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+table {
+    margin: 50px auto 0;
+    width: 50%;
+	color: #FFFFFF;
+}
+#nav2{
+	color: #FF8E47;
+}
+#story2{
+	display: none;
+}
+.event{
+	margin: 0 auto;
+}
+.event-sec{
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+}
+.event-sec img{
+	width: auto;
+	height: 85px;
+}
+.movie-li {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+.movie-bt{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+	z-index: 5;
+}
+.movie-bt-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 500;
+}
+.movie-li:hover .movie-bt-img{
+    font-size: 30px;
+    z-index: 5;
+}
+.movie-li:hover .movie-bt {
+  width: 110px;
+  height: 110px;
+  border: 2px solid #BE1A21;
+  transform: translate(-50%, -50%) rotate(405deg);
+  background: rgba(255,255,255,0.10)
+}
+.movie-li:hover .movie-img {
+  filter: blur(2px);
+  transition: filter 0.4s ease;
+}
+.movie-img{
+	margin: 50px auto 0;
+  border-radius: 30px;
+}
+.story{
+	margin: auto;
+	margin-top: 50px;
+	width: 90%;
+}
+.point-ul{
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 50px;
+}
+.point-ul img{
+	width: 30vw;       
+    max-width: 350px;  
+    height: auto;
+	opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.point-ul img.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.point-count{
+	width: 100px;
+	height: auto;
+	position: absolute;
+	top: -10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.point-tytle{
+	margin-top: 80px;
+	display: flex;
+	justify-content: center;
+	font-size: 20px;
+}
+.point-img{
+	margin-top: 30px;
+	width: 100%;
+	height: 200px;
+	background: #FFFFFF;
+}
+.point-text{
+	margin-bottom: 30px;
+}
+.play-ul{
+	margin-top: 50px;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0 20px;
+}
+/* 最初は非表示＆少し左にずらしておく */
+.play-ul img {
+  width: 15vw;       
+  max-width: 250px;  
+  height: auto;      
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* 表示アニメーション */
+.play-ul img.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.novelty{
+  display: none;
+}
+.novelty-ul{
+	margin: 50px auto 0;
+	width: 80%;	
+}
+.novelty-li{
+    margin-bottom: 50px;
+}
+.novelty-li:last-child{
+    margin-bottom: 0px;
+}
+.venue{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.p-event{
+	font-size: clamp(0.875rem, 0.5313rem + 1.375vw, 1.5625rem);
+	color: rgba(255,255,255,1.00);
+	margin: 50px 0px 30px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+	letter-spacing: 1px;
+}
+.p-day{
+	font-size: clamp(0.875rem, 0.5313rem + 1.375vw, 1.5625rem);
+	color: rgba(255,255,255,1.00);
+	margin: 0px 0px 30px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+	letter-spacing: 1px;
+}
+.p-place{
+	font-size: clamp(0.875rem, 0.5313rem + 1.375vw, 1.5625rem);
+	color: rgba(255,255,255,1.00);
+	margin: 0px 0px 30px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+	letter-spacing: 1px;
+}
+.map{
+    position: relative;
+    overflow: hidden;
+	width: 70%;
+}
+.map iframe{
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+}
+.venue-item{
+	padding: 0 20px;
+}
+@media (max-width:740px){
+#story1{
+	display: none;
+}
+#story2{
+	display: block;
+}
+.movie-bt{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #BE1A21;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+	z-index: 5;
+}
+.movie-bt-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s  ease, width 0.4s ease, height 0.4s ease;
+    z-index: 5;
+ 
+}
+.story{
+	width: 100%;
+}
+.play-ul img {
+  width: 20vw;       
+}
+.point-ul {
+    flex-direction: column;
+    align-items: center;
+}
+.point-li {
+    margin-bottom: 30px;
+}
+.point-li :last-child {
+    margin-bottom: 0px;
+}
+.point-ul img{
+	width: 70vw;       
+}
+.event-sec img{
+	width: auto;
+	height: 50px;
+}
+.story {
+	margin-top: 20px;
+}
+.play-ul{
+	margin-top: 20px;
+	justify-content: space-between;
+}
+.novelty-ul{
+	margin-top: 20px;
+	width: 90%;	
+}
+.novelty-tytle{
+	display: flex;
+	justify-content: center;
+	font-size: 25px;
+}
+.novelty-img{
+	width: 100%;
+    height: 300px;
+    background:#FFFFFF;
+    margin: auto;
+}
+.novelty-text{
+    margin-top: 30px;
+	font-size: 18px;
+	display: flex;
+	justify-content: center;
+}
+.novelty2{
+	padding-top: 30px;
+	display: flex;
+	justify-content: space-between;
+	column-gap: 30px;
+}
+.novelty2-img{
+	width: 50vh;
+	height: 200px;
+	background: #FFFFFF;
+}
+.novelty-li{
+    margin-bottom: 30px;
+}
+.p-event{
+	margin: 20px 0px 10px;
+}
+.p-day{
+	margin: 0px 0px 10px;
+}
+.p-place{
+	margin: 0px 0px 10px;
+}
+.map{
+	width: 80%;
+}
+table{
+  width: 70%;	
+}
+}
+@media (max-width:640px){
+.novelty-img{
+    height: 250px;
+}
+}
+@media (max-width:500px){
+.movie-bt{
+    width: 70px;
+    height: 70px;
+}
+.movie-bt-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+    z-index: 5;
+}
+.movie-li:hover .movie-bt {
+  width: 90px;
+  height: 90px;
+}
+table, tr, th ,td{
+    font-size: 11px;
+}
+}

@@ -1,0 +1,765 @@
+@charset "utf-8";
+#timer {
+    display: none !important;
+}
+body {
+  font-family: "Arial", sans-serif;
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: none;
+}
+h1 {
+  display: block;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  color: white; /* optional */
+  text-align: center; /* optional 窶・adjust as needed */
+}
+/* main title "繝溘ル繧ｲ繝ｼ繝・・ */
+h1 .title-main {
+  font-size: 32px;
+  font-weight: bold;
+}
+/* subtitle "關ｽ荳句●豁｢・・ｼ・ */
+h1 .title-sub {
+  font-size: 24px;
+  font-weight: bold;
+}
+.game-text{
+  font-size: 20px;
+  margin-top: 20px;
+}
+/* Main layout */
+#game-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  position: relative;
+}
+
+/* Panels */
+#left-panel,
+#right-panel {
+    position: absolute;
+    bottom: 150px;
+    z-index: 20;
+    left: auto;
+    right: 50px;
+}
+
+#right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* 上下の間隔 */
+}
+
+#reset-button {
+    width: 90px;
+    height: 90px;
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+    /* 初期状態は非表示だけどスペースは確保 */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 表示時 */
+#reset-button.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#reset-button.reset {
+    background-image: url("../img/reset-bt.png");
+}
+
+#reset-button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+#result {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    white-space: pre-wrap;
+    text-align: center;
+    text-align: left;
+    min-height: 0px;
+    margin: 50px auto 0;
+    right: 50px;
+}
+
+
+/* Center panel */
+#center-panel {
+  text-align: center;
+}
+
+/* ========== BUILDING IMAGE ========== */
+#building {
+  position: relative;
+  width: clamp(500px, calc(500px + (100 / 300) * (100vw - 900px)), 600px);                      /* match actual image width */
+  height: 900px;                     /* match image height */
+  overflow: visible;
+  border-radius: 10px;
+  border: 0;
+  background-image: url("../img/building.png");
+  background-size: cover;            /* fills entire div, preserves aspect ratio */
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: none;
+  z-index: 0;
+}
+
+/* Hide old shaft/floor elements completely */
+#floors,
+.floor-line,
+#ground-platform {
+  display: none !important;
+}
+/* Danger label */
+#danger-label {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: red;
+  font-weight: bold;
+  display: none;
+  animation: blink 1s infinite;
+  z-index: 2; /* above building */
+  right:10%;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+:root {
+  --elevator-left: 50%;   /* default horizontal position */
+  --elevator-bottom: 2px; /* default vertical position */
+}
+
+#elevator {
+    position: absolute;
+    width: 100px;
+    left: var(--elevator-left);
+    bottom: var(--elevator-bottom);
+    transform: translateX(-50%);
+    z-index: 6;
+    border-radius: 0;
+    overflow: hidden;
+    background-image: url("https://ik.imagekit.io/1sntxiijv/%E3%82%A8%E3%83%AC%E3%83%98%E3%82%99%E3%83%BC%E3%82%BF%E3%83%BC.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+}
+
+
+#stop-button,
+#restart-button { 
+  width: 120px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+/* Stop button stays crimson red */
+#stop-button {
+  background-color: crimson;
+}
+
+/* Restart (Start) button becomes green */
+#restart-button {
+  background-color: green;
+}
+
+/* Disabled states */
+#stop-button:disabled,
+#restart-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+#action-button {
+    width: 90px;
+    height: 90px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: transparent;
+}
+#action-button.start {
+  background-image: url("img/start-bt.png");  /* START画像 */
+}
+
+#action-button.stop {
+  background-image: url("img/stop-bt.png");   /* STOP画像 */
+}
+
+
+
+/* Disabled look (optional) */
+#action-button:disabled {
+  cursor: not-allowed;
+  transform: scale(1);
+}
+/* ========== TIMER ========== */
+#timer {
+  font-size: 18px;
+  margin-top: 10px;
+  display:none;
+}
+
+/* ========== EFFECTS LAYER ========== */
+.effect-layer {
+  position: absolute;
+  width: 480px;
+  height: 600px;
+  pointer-events: none;
+  top: 0;
+  left: 76%;          /* move right by 2% of container width */
+  transform: translateX(-50%);
+  z-index: 7;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffff88 0%, #ff3300 100%);
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: spark-move 0.8s ease-out forwards;
+}
+
+.smoke {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #555, transparent);
+  opacity: 0.3;
+  border-radius: 50%;
+  animation: smoke-rise 1.2s ease-out forwards;
+}
+
+.fire {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, orange, red);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fire-flicker 0.5s infinite alternate;
+}
+
+@keyframes spark-move {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+}
+
+@keyframes smoke-rise {
+  0% { transform: translateY(0); opacity: 0.3; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+@keyframes fire-flicker {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(1.4); opacity: 0.4; }
+}
+
+/* ========== FLASH EFFECT ========== */
+#crash-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 0, 0, 0.5);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* ========== NAME ENTRY ========== */
+#name-entry {
+    position: absolute;           /* tweak these to place it exactly where you want */
+    bottom: 400px;         /* place near the bottom of the left panel/game layout */
+    z-index: 50;          /* above most things */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateZ(0);
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    display: flex;        /* keeps input + button aligned horizontally */
+    gap: 10px;
+    align-items: center;
+    pointer-events: none; /* disabled while hidden */
+    right: 50px;
+}
+/* When active, make it visible (no layout shift) */
+#name-entry.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+#player-name {
+  padding: 8px;
+  font-size: 16px;
+  width: 150px;
+  text-align: center;
+}
+
+#submit-score {
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px; /* this controls the distance between input and button */
+  margin-top: 0px;
+}
+
+/* ========== LEADERBOARD ========== */
+.leaderboard {
+  margin-top: 20px;
+  position: relative;
+  background: #222;
+  color: #eee;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgb(0 0 0 / 80%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.leaderboard-title {
+  padding-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1.5px;
+  color: #ffd700;
+  text-transform: uppercase;
+}
+
+.leaderboard-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #444;
+  font-size: 1rem;
+}
+
+.leaderboard-entry:last-child {
+  border-bottom: none;
+}
+
+.rank {
+  width: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rank.gold { color: #ffd700; font-weight: 900; }
+.rank.silver { color: #c0c0c0; font-weight: 900; }
+.rank.bronze { color: #cd7f32; font-weight: 900; }
+
+.name {
+  flex-grow: 1;
+  padding-left: 10px;
+  color: #ddd;
+  font-weight: 600;
+}
+
+.score {
+  min-width: 75px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Fade-in animation for leaderboard */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(0px); }
+  to { opacity: 1; transform: translateY(0px); }
+}
+
+.fade-in {
+  animation: fadeIn 1.0s ease forwards;
+}
+
+.newest-entry {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-weight: 700;
+  color: #ffd700;
+}
+/* ===== Overlay Title & Difficulty ===== */
+#overlay-ui {
+  width: 300px;
+  height: 200px;
+  left: 122px;
+  top: 130px;  
+  margin-top: 150px;
+  text-align: center;
+  z-index: 20;           
+  color: white;
+  background: rgba(0, 0, 0, 0.3);  
+  padding: 15px 25px;
+  border-radius: 10px;
+}
+
+/* Title text */
+#overlay-ui h1 {
+  margin: 0;
+  line-height: 1.3;
+}
+
+#overlay-ui .title-main {
+  font-size: 36px;
+  font-weight: bold;
+  display: block;
+}
+
+#overlay-ui .title-sub {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* Difficulty selector */
+#difficulty-wrapper {
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+#difficulty {
+  font-size: 16px;
+  padding: 4px 8px;
+  margin-left: 8px;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  border: 1px solid #555;
+  cursor: pointer;
+}
+
+/* ===== TABLET MODE (竕､ 900 px) ===== */
+@media (max-width: 900px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Stack layout vertically */
+  #game-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #name-entry { left: 10px; bottom: 10px; }
+  #result { width: 170px; min-height: 200px; }
+
+  /* Building fills screen like a background */
+  #building {
+    width: 100vw;              /* 横は狭くなってOK */
+    height: 100vh;             /* 高さは常に画面いっぱい表示 */
+    background-size: auto 100%;/* ← 画像の高さを100%にフィット */
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  /* Put all UI elements on top of building */
+  #overlay-ui,
+  #result,
+  #danger-label,
+  #action-button,
+  #name-entry,
+  #timer,
+  #difficulty,
+  #right-panel,
+  #left-panel {
+    z-index: 5;
+  }
+#left-panel, #right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+
+   
+}
+
+  /* Center main overlay title */
+  #overlay-ui {
+    position: absolute;
+	width: 100%;
+	height: 130px;
+	margin-top: 0px;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.5);
+    border-radius: 12px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+
+  #overlay-ui .title-main { font-size: 24px; }
+
+  .game-text {
+    margin-top: 10px;
+  }
+
+  #difficulty-wrapper {
+    margin-top: 20px;
+  }
+	
+  /* Elevator stays visible and scaled */
+  #elevator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+	width: 18vw;
+    z-index: 2;
+  }
+  
+  #overlay-ui h1 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Buttons and scoreboard stack near bottom */
+  #action-button {
+	width: 90px;
+	height: 90px;
+    margin-top: auto;
+    margin-bottom: 16px;
+    font-size: 16px;
+    z-index: 6;
+  }
+
+  #result {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+    width: 70%;
+    text-align: center;
+    z-index: 6;
+    margin-top: 20px;
+  }
+
+  /* Name entry stays visible and centered at bottom */
+  #name-entry {
+    position: absolute;
+    bottom: 340px;
+    left: 50%;
+	right: auto;
+    transform: translateX(-50%);
+    display: flex;
+	flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0,0,0,0.45);
+    border-radius: 10px;
+    z-index: 7;
+	width: 80%;
+  }
+
+  #player-name {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 15px;
+  }
+
+  #submit-score {
+    padding: 8px 12px;
+    font-size: 15px;
+	width: 170px;
+  }
+
+  #danger-label {
+    position: absolute;
+    bottom: 60px;
+    right: 8%;
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    z-index: 6;
+  }
+}
+
+@media (max-width: 740px) {
+  #left-panel, #right-panel {
+    bottom: 120px;
+  }
+}
+
+@media (max-width: 500px) {
+  #left-panel, #right-panel {
+    right: 20px;
+  }
+  #action-button {
+	width: 80px;
+	height: 80px;
+    margin-top: auto;
+    margin-bottom: 16px;
+    font-size: 16px;
+    z-index: 6;
+  }
+  #reset-button {
+    width: 80px;
+    height: 80px;
+  }
+}
+@media (max-width: 834px) and (max-height: 1210px) {
+  #elevator {
+    height: 156px;
+  }
+}
+@media (max-width: 834px) and (max-height: 1194px) {
+  #elevator {
+    height: 150px;
+  }
+}
+@media (max-width: 820px) and (max-height: 1180px) {
+  #elevator {
+    height: 150px;
+  }
+}
+@media (max-width: 834px) and (max-height: 1112px) {
+  #elevator {
+    height: 130px;
+  }
+}
+@media (max-width: 810px) and (max-height: 1080px) {
+  #elevator {
+    height: 130px;
+  }
+}
+@media (max-width: 744px) and (max-height: 1133px) {
+  #elevator {
+    height: 150px;
+  }
+}
+@media (max-width: 768px) and (max-height: 1024px) {
+  #elevator {
+    height: 120px;
+  }
+}
+@media (max-width: 440px) and (max-height: 956px) {
+  #elevator {
+    height: 160px;
+  }
+}
+@media (max-width: 430px) and (max-height: 932px) {
+  #elevator {
+    height: 156px;
+  }
+}
+@media (max-width: 428px) and (max-height: 926px) {
+  #elevator {
+    height: 154px;
+  }
+}
+@media (max-width: 414px) and (max-height: 896px) {
+  #elevator {
+    height: 150px;
+  }
+}
+@media (max-width: 402px) and (max-height: 874px) {
+  #elevator {
+    height: 146px;
+  }
+}
+@media (max-width: 393px) and (max-height: 852px) {
+  #elevator {
+    height: 143px;
+  }
+}
+@media (max-width: 390px) and (max-height: 844px) {
+  #elevator {
+    height: 140px;
+  }
+}
+@media (max-width: 375px) and (max-height: 812px) {
+  #elevator {
+    height: 136px;
+  }
+}
+@media (max-width: 414px) and (max-height: 780px) {
+  #elevator {
+    height: 122px;
+  }
+}
+@media (max-width: 414px) and (max-height: 736px) {
+  #elevator {
+    height: 110px;
+  }
+}
+@media (max-width: 375px) and (max-height: 667px) {
+  #elevator {
+    height: 100px;
+  }
+}
+@media (max-width: 320px) and (max-height: 568px) {
+  #elevator {
+    height: 85px;
+  }
+}

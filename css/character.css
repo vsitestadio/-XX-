@@ -1,0 +1,273 @@
+@charset "utf-8";
+/* CSS Document */
+#nav4{
+  color: #FF8E47;
+}
+.character-sec{
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+}
+.character-sec img{
+	width: auto;
+	height: 85px;
+}
+.section-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  column-gap: 50px;
+}
+.character-bt {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+.c1{
+  background: #651a1a; 		
+}
+
+.c2{
+   background: #1a3865;		
+}
+
+.c3{
+  background: #65441a;	
+}
+
+.c4{
+  background: #53651a; 		
+}
+	
+.c5{
+   background: #1a651c;	
+}
+	
+.c6{
+  background: #655f1a;	
+}
+.c7{
+  background: #4b4b4b;	
+}
+.sabun img {
+  width: 90px;
+  height: auto;
+}
+button:hover{
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  background: #797979;
+  padding: 10px;
+  border-radius: 10px;
+}
+.buttons button {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 45px;
+}
+
+.buttons button img {
+  width: 63px;   /* 調整可能 */
+  height: auto;
+}
+
+
+.buttons button.bt1.active {
+  background: #000000;   
+}
+
+
+.buttons button.bt2.active {
+  background: #000000;   
+}
+
+
+.buttons button.bt3.active {
+  background: #000000;  
+}
+
+
+.buttons button.bt4.active {
+  background: #000000;   
+}
+
+
+.buttons button.bt5.active {
+  background: #000000;  
+}
+
+
+.buttons button.bt6.active {
+  background: #000000;   
+}
+
+
+.buttons button.bt7.active {
+  background: #000000;   
+}
+
+/* キャラクターエリア全体 */
+.character-container {
+  width: 700px;
+  height: 540px;
+  overflow: hidden;
+  background: #830002;
+  position: relative;
+}
+
+/* 縦に並べるラッパー */
+.character-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.8s ease-in-out;
+}
+
+/* 各キャラ */
+.character {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  height: 540px;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 7px solid #141414;
+}
+.character-main img {
+  height: 480px;
+  width: auto;
+}
+.character-img{
+  opacity: 0;
+  width: 300px;
+  height: 150px;
+  background: rgba(255,255,255,1.00);
+  margin: 50px 0px 0px;
+}
+.name {
+    font-size: 36px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #FFFFFF;
+}
+.detail {
+  font-size: 18px;
+  margin-top: 10px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+	color: #FFFFFF;
+}
+.character-li {
+  max-width: 300px;
+}
+
+
+@media (max-width:910px){
+.character-container{
+  width: 600px;		
+  height: 500px;
+}
+
+.character{
+  height: 500px;		
+}
+.character-main img{
+  width: auto;
+  height: 400px;
+}
+.character-img{
+  width: 270px;
+  height: 120px;		
+}
+.buttons button img {
+  width: 58px;   /* 調整可能 */
+  height: auto;
+}
+.sabun img {
+  width: 80px;
+  height: auto;
+}
+}
+@media (max-width:740px){
+.character-sec img{
+	width: auto;
+	height: 50px;
+}
+.section-container{
+  margin: 20px auto 0px;
+  width: 90%;
+  column-gap: 50px;
+}
+.character-container{
+  width: 500px;		
+  height: 520px;
+}
+.character{
+  height: 520px;
+  flex-direction: column;
+  column-gap: 0px;
+}
+.character-img{
+  display: none;
+}
+.character-main img{
+  height: 360px;
+}
+.name {
+  font-size: 32px;
+}
+.detail {
+  font-size: 15px;
+  margin-top: 0px;
+}
+.buttons button img {
+  width: 60px;   /* 調整可能 */
+  height: auto;
+}
+}
+@media (max-width:500px){
+.section-container{
+  column-gap: 0px;
+}
+.character-container{
+  width: 380px;		
+  height: 420px;
+}
+.character{
+  height: 420px;
+  flex-direction: column;
+  column-gap: 0px;
+}
+.character-main img{
+  height: 280px;
+}
+.detail {
+  font-size: 14px;
+}
+.sabun img {
+  width: 45px;
+  height: auto;
+}
+.buttons button img {
+  width: 45px;   /* 調整可能 */
+  height: auto;
+}
+.name {
+  font-size: 30px;
+}
+}

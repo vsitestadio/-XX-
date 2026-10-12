@@ -1,0 +1,270 @@
+@charset "utf-8";
+/* CSS Document */
+#nav1{
+	color: #FF8E47;
+}
+#main1{
+	display: block;
+}
+#main2{
+	display: none;
+}
+#story1{
+	display: block;
+}
+#story2{
+	display: none;
+}
+.main {
+  position: relative;
+}
+
+/* Canvas ash layer */
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;              /* above image, below nav */
+  pointer-events: none;   /* do not block clicks */
+}
+
+/* Ensure images stay behind */
+#main1,
+#main2 {
+  position: relative;
+  z-index: 1;
+}
+.lang-bg {
+	z-index: 30;
+    width: 30%;
+    max-width: 350px;
+    min-width: 100px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.lang-bg img{
+	width: 100%;
+	height: auto;
+}
+.lang-bg:hover {
+    cursor: pointer;
+}
+.subtytle{
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	padding: 0 20px;
+}
+.subtytle p{
+	font-size: clamp(1.5rem, 0.682rem + 4.09vw, 3.75rem);
+	text-align: center;
+}
+.movie-li {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+.movie-bt{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+	z-index: 5;
+}
+.movie-bt-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 500;
+}
+.movie-li:hover .movie-bt-img{
+    font-size: 30px;
+    z-index: 5;
+}
+.movie-li:hover .movie-bt {
+  width: 110px;
+  height: 110px;
+  border: 2px solid #BE1A21;
+  transform: translate(-50%, -50%) rotate(405deg);
+  background: rgba(255,255,255,0.10)
+}
+.movie-li:hover .movie-img {
+  filter: blur(2px);
+  transition: filter 0.4s ease;
+}
+.movie-img{
+	margin: 50px auto 0;
+  border-radius: 30px;
+}
+.story{
+	width: 90%;
+	margin: 0 auto;
+}
+.story-item{
+	margin: auto;
+	margin-top: 50px;
+	padding: 0 20px;
+}
+.play-ul{
+	margin-top: 50px;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0 20px;
+}
+/* 最初は非表示＆少し左にずらしておく */
+.play-ul img {
+  width: 15vw;       
+  max-width: 250px;  
+  height: auto;      
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* 表示アニメーション */
+.play-ul img.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.news-ul{
+	margin-top: 50px;
+}
+.news-li{
+	border: 5px solid #3f3b3a;
+	background:rgba(0,0,0,1.00);
+	width: 65%;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: 50px;
+}
+.news-li:last-child{
+	margin-bottom: 0px;
+}
+.day{
+	color: rgb(255 135 0);
+    position: absolute;
+    right: 5px;
+    font-size: clamp(0.75rem, 0.625rem + 0.5vw, 1rem);
+    bottom: 5px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+	letter-spacing: 2px;
+}
+.news-text{
+	color: rgba(255,255,255,1.00);
+	font-size: clamp(0.875rem, 0.6875rem + 0.75vw, 1.25rem);
+	margin: 30px auto 30px 30px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.news-text:hover{
+	color: rgb(255 135 0);
+}
+.news-more{
+	margin-right: 16%;
+	margin-left: auto;
+	color: #FFFFFF;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 20px;
+	margin-top: 20px;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+@media (max-width:740px){
+#story1{
+	display: none;
+}
+#story2{
+	display: block;
+}
+.movie-bt{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #BE1A21;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+	z-index: 5;
+}
+.movie-bt-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.6s  ease, width 0.4s ease, height 0.4s ease;
+    z-index: 5;
+ 
+}
+.story{
+	width: 100%;
+}
+.play-ul{
+	margin-top: 20px;
+	justify-content: space-between;
+}
+.play-ul img {
+  width: 20vw;       
+}
+.news-ul{
+	margin-top: 20px;
+}
+.story-item {
+    padding: 0px;
+	margin-top: 20px;
+}
+.news-li{
+	width: 80%;
+	margin-bottom: 30px;
+}
+.news-text{
+	margin: 20px auto 20px 30px;
+}
+.news-more{
+	margin-right: 8%;
+	font-size: 16px;
+	margin-top: 10px;
+}
+}
+
+@media (max-width:500px){
+.movie-bt{
+    width: 70px;
+    height: 70px;
+}
+.movie-bt-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.6s ease, width 0.4s ease, height 0.4s ease;
+    z-index: 5;
+}
+.movie-li:hover .movie-bt {
+  width: 90px;
+  height: 90px;
+}
+}

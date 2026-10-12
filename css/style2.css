@@ -1,0 +1,303 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+    margin: 0;
+    padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover{
+	color: #FF8E47;
+}
+body{
+    background: rgb(38 38 38);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 150px 0 rgb(0 0 0 / 80%);
+}
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.nav {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.nav-background {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+}
+.nav-background img {
+    width: 100%;
+    height: auto; /* ← ここが大事！ */
+    display: block;
+}
+.hamburger {
+    display: none;
+}
+.hamburger img {
+    width: 40px;
+    height: 40px;
+}
+.nav-ul {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    justify-content: space-around;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav-li {
+    font-size: clamp(1.25rem, 0.8766rem + 0.7987vw, 1.875rem);
+    color: #e7e7e7;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+#nav{
+    color: #EA9121;
+}
+.sec{
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+}
+.sec img{
+	width: auto;
+	height: 85px;
+}
+.footer-span{
+	height: 90%;
+    background: #fff;
+    width: 2px;
+    margin: auto 0;
+}
+.footer{
+	display: flex;
+	background: #000000;
+	height: 350px;
+	margin-top: 100px;
+    padding: 0 100px;
+    justify-content: space-between;
+	box-shadow: 0 0 40px 0 rgb(0 10 34 / 81%);
+}
+.footer-ul{
+	font-size: 20px;
+	margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footer-li{
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+	row-gap: 25px;
+    justify-content: center;
+}
+.logo{
+	margin: 80px 0px 0px;
+}
+.logo img{
+	width: 80%;
+	margin: 0 auto;
+}
+.copyright{
+	margin: 30px auto 0px;
+    color: #fff;
+    text-align: center;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.official{
+	row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    margin: 80px 0px 0px;
+}
+.official img{
+	width: 60px;
+}
+@media (max-width:910px){
+.sec{
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+}
+.sec img{
+	width: auto;
+	height: 70px;
+}
+}
+@media (max-width:900px) {
+  body {
+    position: relative;
+  }
+  .hamburger {
+	display: block;
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 3000;
+  }
+
+  .hamburger img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .nav-background {
+    display: none;
+  }
+
+  /* ===== メニュー全体 ===== */
+  .nav-ul {
+	transform: none;
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+    background: transparent;
+  }
+
+  /* ===== 左右の黒パネル ===== */
+  .nav-ul::before,
+  .nav-ul::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background: #252525;
+    transition: transform 1.2s ease-in-out;
+    z-index: 1;
+  }
+
+  /* 左パネル：左に隠れてる */
+  .nav-ul::before {
+    left: 0;
+    border-right: 5px solid rgba(0,0,0,1.00);
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    transform: translateX(-100%);
+  }
+
+  /* 右パネル：右に隠れてる */
+  .nav-ul::after {
+    right: 0;
+    transform: translateX(100%);
+	border-left: 5px solid rgba(0,0,0,1.00);
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+  }
+
+  /* === 開いたとき === */
+  .nav-ul.show {
+    display: flex;
+  }
+
+  /* パネルが中央でくっつく */
+  .nav-ul.animate-bg::before {
+    transform: translateX(0);
+  }
+  .nav-ul.animate-bg::after {
+    transform: translateX(0);
+  }
+
+  /* パネルが閉じたあと、文字がフェードイン */
+  .nav-ul.visible .nav-li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === メニュー文字 === */
+  .nav-li {
+    margin: 20px 0;
+    font-size: clamp(1.5625rem, 0.8272rem + 2.9412vw, 2.1875rem);
+    color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.7s ease;
+    z-index: 2002;
+  }
+  /* ハンバーガーとメニューの重なり順を整理 */
+  .nav {
+    position: unset;
+  }
+
+  /* フッターなどは現状維持 */
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
+    height: 300px;
+    margin-top: 50px;
+  }
+
+  .footer-ul {
+    display: none;
+  }
+
+  .logo {
+    margin-top: 0px;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+
+  .footer-span {
+    display: none;
+  }
+
+  .official {
+    margin-top: 30px;
+    flex-direction: unset;
+    column-gap: 30px;
+    margin: 30px auto 0px;
+  }
+
+  .official img {
+    width: 50px;
+  }
+
+  .copyright {
+    margin-top: 10px;
+  }
+}
+
+
+@media (max-width:640px){
+.sec img{
+	width: auto;
+	height: 45px;
+}
+.hamburger{
+	width: 50px;
+	height: 50px;
+}
+}

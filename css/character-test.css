@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */
+    body {
+      font-family: sans-serif;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 80%;
+      overflow: hidden;
+      margin: 50px auto 0;
+    }
+    /* 左側: 説明 */
+    .character-detail {
+      width: 25%;
+      padding: 0 20px 20px;
+      display: flex;
+      align-items: flex-start;
+	  flex-direction: column;
+	  row-gap: 20px;
+    }
+    .character-detail p {
+      font-size: 15px;
+      text-align: center;
+      text-align: start;
+    }
+	#name{
+	  font-size: 40px;
+	}
+	#detail{
+	  margin-top: 10%;
+	}
+	#mv{
+      width: 100%;
+	  height: 20%;
+	  margin-top: 20%;
+	  background: #fff;
+	}
+    /* 中央キャラを包むエリア */
+    .main-area {
+      flex: 1;
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    .main-wrapper {
+      transition: transform 0.6s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .character-main {
+      min-height: 100%;
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #000;
+    }
+    .c1 { background: #ffcccc; }
+    .c2 { background: #ccffcc; }
+    .c3 { background: #ccccff; }
+    .c4 { background: #ffffcc; }
+    .c5 { background: #ffccff; }
+    .c6 { background: #ccffff; }
+    .c7 { background: #e0e0e0; }
+    
+	.character-item{
+		background: #FFFFFF;
+		margin-top: auto;
+		width: auto;
+		height: 90%;
+		display: flex;
+		align-content: end;
+	}
+	.character-list{
+		width: 20%;
+		display: flex;
+        flex-direction: column;
+		align-items: center;
+		grid-row-gap: 30px;
+		justify-content: flex-start;
+	}
+	.sabun img{
+		width: 80px;
+		height: auto;
+	}
+    /* 右側: ボタン */
+    .buttons {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+	  background: #797979;
+	  padding: 10px;
+    }
+    .buttons button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      background: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .buttons button.active {
+      background: orange;
+      color: #fff;
+    }
+	  .footer{
+		  margin-top: 0px;
+		  height: 300px;
+		  background: #000000;
+	  }
+  
+@media (max-width:740px){
+	.container{
+		flex-direction: column;
+		height: 1000px;
+	}
+	.character-list{
+		order: -1;
+        flex-direction: row-reverse;
+        width: 100%;
+        justify-content: space-between;
+	}
+	.buttons{
+		flex-direction: unset;
+		width: auto;
+		height: 60px;
+	}
+	.character-detail{
+		order: 1;
+		width: 100%;
+		row-gap: 0px;
+		align-items: center;
+		padding: 0;
+	}
+	#name{
+		font-size: 40px;
+	}
+	#detail{
+		font-size: 15px;
+		margin-top: 20px;
+		width: 80%;
+	}
+	#mv{
+		margin-top: 20px;
+	 	width: 300px;
+        height: 120px;
+	}
+	.main-area{
+		background: none;
+		margin-top: 10px;
+	}
+	.main-wrapper{
+		width: 80%;
+		margin: 0 auto;
+	}
+	.sabun img{
+		width: 80px;
+	}
+}
+.footer{
+	margin-top: 0px;
+}
